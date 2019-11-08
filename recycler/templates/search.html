@@ -1,0 +1,108 @@
+{% load static %}
+<head>
+	<title>Labs - Design Studio</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Labs - Design Studio">
+	<meta name="keywords" content="lab, onepage, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'labs/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/flaticon.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/style.css' %}"/>
+
+</head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+        <div class="loader">
+            <img src="{% static 'labs/img/car-bagge.png' %}" alt="">
+            <h2>Loading.....</h2>
+        </div>
+</div>
+
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="logo">
+            <img src="{% static 'labs/img/car-bagge.png' %}" alt=""><!-- Logo -->
+        </div>
+        <!-- Navigation -->
+        <div class="responsive"><i class="fa fa-bars"></i></div>
+        <nav>
+            <ul class="menu-list">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li class="active"><a href="contact.html">Contact</a></li>
+                <li><a href="elements.html">Elements</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Header section end -->
+    
+	<!-- Page header -->
+	<div class="page-top-section">
+		<div class="overlay"></div>
+		<div class="container text-center">
+			<div class="page-info">
+				<h2>Search Results</h2>
+				<div class="page-links">
+                    <a href="#">Home</a>
+                    {%if products%}
+                    <span>{{message.capitalize}}</span>
+                    {% else %}
+                    <span>Not Found</span>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Page header end -->
+
+
+	<!-- Services section -->
+	<div class="services-section spad">
+		<div class="container">
+			<div class="section-title dark">
+				<h2>Found<span>{{ products|length }}</span> results of the searched term <span>{{message.capitalize}}</span> </h2>
+            </div>
+      
+			<div class="row">
+                    {%if products%}
+                    {% for product in products %}                
+				<!-- single service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<div class="icon">
+							<i class="flaticon-023-flask"></i>
+						</div>
+						<div class="service-text">
+                            <h2>{{product.name.capitalize}}</h2>
+                            <div class="card-img">
+                                    <img src="{% static 'labs/img/car-bagge.png' %}" alt="">
+                            </div>                            
+							<p>By {{product.user.username.capitalize}}</p>
+						</div>
+					</div>
+                </div>
+                {% endfor %}
+                {% endif %}                
+			</div>
+			<!-- <div class="text-center">
+				<a href="" class="site-btn">Browse</a>
+			</div> -->
+		</div>
+	</div>
+	<!-- services section end -->
+
+    {% include "partials/_footer_scripts.html" %}
+</body>
+</html>

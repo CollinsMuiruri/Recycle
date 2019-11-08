@@ -1,9 +1,14 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+<script src="{% static 'fonts/fontawesome-free-5.11.2-web/js/brands.js' %}"></script>
+<script src="{% static 'fonts/fontawesome-free-5.11.2-web/js/solid.js' %}"></script>
+<script src="{% static 'fonts/fontawesome-free-5.11.2-web/js/fontawesome.js' %}"></script>
 
 <style>
 .navbar-fixed-top {
+  background: transparent purple;
+  opacity: 100%;
   position: fixed;
   right: 0;
   left: 0;
@@ -13,17 +18,17 @@
 </style>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="logo">
-        <h4>The Nav</h4>
+        <h4>CAR - BAGGE</h4>
     </div>
     <ul class="nav-links">
         <li><a href="">Home</a></li>
         <li><a href="">About</a></li>
         <li><a href="">Work</a></li>
-        <li><a href="">Projects</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}?next={% url 'index' %}">Logout</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'logout' %}?next={% url 'index' %}"> <i class="fas fa-user"></i> Logout</a></li>
         {% else %}
-        <li><a href="{% url 'login' %}">login</a></li>
+        <li><a href="{% url 'login' %}"> <i class="fas fa-user"></i> Login</a></li>
         {% endif %}
     </ul>
     <div class="burger">

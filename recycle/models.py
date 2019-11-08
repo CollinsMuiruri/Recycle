@@ -1,7 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default = 'default.jpg', upload_to = 'profile_pics')
 
+    def __str__(self):
+        return f'{self.user.username} Profile'
 class Photo(models.Model):
     photo = models.ImageField(upload_to='photos/', blank=True, null=True)
     photo_caption = models.CharField(max_length=140)
@@ -20,3 +26,4 @@ class Photo(models.Model):
     def get_photos(cls):
         photos = Photo.objects.all()
         return photos
+

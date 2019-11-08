@@ -22,8 +22,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path('', include('recycle.urls')),
+    path('recycle/', include('recycle.urls')),
+    path('recycler/', include('recycler.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('allauth.urls')),
     re_path(r'^', include('recycle.urls'))
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

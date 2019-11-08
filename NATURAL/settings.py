@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'recycle',
+    'recycler',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -39,11 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -80,14 +77,23 @@ WSGI_APPLICATION = 'NATURAL.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'recycle',
+#         'USER': 'root',
+#         'PASSWORD': 'wildgoosechase',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'recycle',
-        'USER': 'root',
-        'PASSWORD': 'wildgoosechase',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'USER': 'collins',
+    'PASSWORD':'wildgoosechase',
     }
 }
 
@@ -133,5 +139,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 SITE_ID = 1

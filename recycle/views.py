@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login
+
 
 # Create your views here.
 def index(request):
@@ -21,3 +23,10 @@ def register(request):
         form = UserCreationForm()
     context = {'form': form}
     return render(request, 'registration/register.html', context)
+
+@login_required(login_url ="/accounts/login")
+def profile(request):
+    return render(request, 'profile.html')
+
+def products(request):
+    products = Pr
