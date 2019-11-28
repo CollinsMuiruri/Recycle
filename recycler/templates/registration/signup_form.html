@@ -34,7 +34,7 @@
 	<div class="limiter">
 			<div class="container-login100" style="background-image: url('https://images.unsplash.com/photo-1464014161740-a4ee1bf0fda6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=60');">
 				<div class="wrap-login100">
-				<form method="POST" action="{% url 'register' %}" login100-form validate-form">
+				<form method="POST" action="{% url 'company_signup' %}" login100-form validate-form">
 						{% csrf_token %}
                                          
 					<span class="login100-form-logo">
@@ -59,7 +59,7 @@
 					{% endfor %}
 				{% endif %}
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Company Name">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 

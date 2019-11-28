@@ -19,12 +19,17 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from recycler.views import CompanySignUpView,SignUpView
+from recycle.views import ConsumerSignUpView
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path('recycle/', include('recycle.urls')),
     path('recycler/', include('recycler.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
+    path('accounts/signup/recycle/', ConsumerSignUpView.as_view(), name='consumer_signup'),
+    path('accounts/signup/recycler/', CompanySignUpView.as_view(), name='company_signup'),
     re_path(r'^', include('recycle.urls'))
 ]
 if settings.DEBUG:

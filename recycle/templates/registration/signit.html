@@ -1,0 +1,75 @@
+{% load static %}
+<head>
+	<title>Car-bagge - Recycling website</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Labs - Design Studio">
+	<meta name="keywords" content="lab, onepage, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'labs/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/flaticon.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'labs/css/style.css' %}"/>
+
+</head>
+
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader">
+        <img src="{% static 'labs/img/car-bagge.png' %}" alt="">
+        <h2>Loading.....</h2>
+    </div>
+</div>
+
+<!-- Header section -->
+<header class="header-section">
+    <div class="logo" style="padding-top:10px ;">
+        <img src="{% static 'labs/img/car-bagge.png' %}" alt=""><!-- Logo -->
+    </div>
+    <!-- Navigation -->
+    <div class="responsive"><i class="fa fa-bars"></i></div>
+    <nav>
+        <ul class="menu-list">
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}"> <i class="flaticon-025-imagination" style="font-size: 20px;;"></i> Profile</a></li>
+            <li><a href="{% url 'logout' %}?next={% url 'index' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}"> <i class="flaticon-025-imagination" style="font-size: 20px;;"></i> Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<!-- Header section end -->
+    
+	<!-- features section -->
+	<div style="height: 95%;" class="team-section spad">
+		<!-- <div class="overlay"></div> -->
+		<div class="container">
+			<div class="section-title">
+				<h2>What position would <span>You</span> want to join as in <span>You & World </span>?</h2>
+			</div>
+			<div class="row">
+
+				</div>
+			</div>
+			<div class="text-center mt100">
+				<a href="{% url 'company_signup' %}" class="site-btn">Sign up as a Company</a> <span style="color: transparent;">This is just a space</span><a href="{% url 'consumer_signup' %}" class="site-btn">Sign up as a consumer</a>
+
+			</div>
+		</div>
+	</div>
+	<!-- features section end-->    
+{% include "partials/_footer_scripts.html" %}
+</body>

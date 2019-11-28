@@ -3,18 +3,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.db.models.signals import post_save
-from .models import RecyclerProfile, Product
-from .forms import CreateProductForm
+from .models import CompanyProfile, Product
+from .forms import CreateProductForm,CompanySignUpForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
-from .models import Product
+from .models import Product,Category
+from django.views.generic import TemplateView,CreateView
 
 # Create your views here.
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 def save_profile(sender, instance, **kwargs):
-    instance.RecyclerProfile.save()
+    instance.CompanyProfile.save()
     
     post_save.connect(save_profile, sender=User)
+
+class SignUpView(TemplateView):
+    template_name = "registration/signit.html"
 
 def recycler_home(request):
     return render(request, 'home.html')
@@ -25,32 +32,32 @@ def search(request):
     """
     if request.GET['search']:
         search_term = request.GET.get("search")
-        products = Product.search_product(search_term)
+        products = CompanyProfile.find_profile(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message, "products":products})
     else:
-        message = "You have not searched for anything yooow ..."
+        message = "It seems you have not searched for anything ..."
         
         return render(request, 'search.html',{"message":message})
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username = username,password = password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = UserCreationForm()
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password1']
+#             user = authenticate(username = username,password = password)
+#             login(request, user)
+#             return redirect('index')
+#     else:
+#         form = UserCreationForm()
+#     context = {'form': form}
+#     return render(request, 'registration/register.html', context)
 
-@login_required(login_url ="/recycler/accounts/login")
+@login_required(login_url ="/accounts/login")
 def create_product(request):
     """
     This view function creates an instance of a product
@@ -65,7 +72,22 @@ def create_product(request):
         return redirect('profile')
     else:
         form = CreateProductForm()
-        return render(request, 'create.html',{"form":form})
+        return render(request, 'edit.html',{"form":form})
 
 def product(request):
-    products = Product.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'index.html',{"categories":categories})
+
+class CompanySignUpView(CreateView):
+    model = User
+    form_class = CompanySignUpForm
+    template_name = 'registration/signup_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'teacher'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('profile')

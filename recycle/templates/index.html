@@ -56,12 +56,23 @@
 
 	<!-- Page header -->
 	<div class="page-top-section">
-		<div class="overlay" style="background-image: url('https://picsum.photos/id/89/2000/500');"></div>
+		<div class="overlay" style="background-image: url('https://picsum.photos/id/89/2000/500');height: 500px ;"></div>
 		<div class="container text-center">
 			<div class="page-info">
                 <div class="hero-center">
-                    <form class="nl-form" action="{% url 'search' %}">
-                        <input type="text" style="width: 700px;" placeholder="Search for your product here" name="search">
+						<h4 style="color: white;font-size: 52px;">What would you want to Recycle?</h4>
+						{% for category in categories  %}
+						<div class="row">
+							<button class="site-btn mr20">Bottles</button>
+							<button class="site-btn btn-2 mr20">paper</button>
+							<button class="site-btn mr20">electronics</button>
+							<!-- <button class="site-btn btn-2 mr20">Browse</button> -->
+							
+						</div>
+						{% endfor %}
+						<h4 style="color: white;font-size: 32px;">Or..</h4>
+					<form class="nl-form" action="{% url 'search' %}">
+                        <input type="text" style="width: 700px;" placeholder="Search for a company here" name="search">
                         <button class="site-btn btn-2">search</button>
                     </form>			
                 </div>
@@ -103,7 +114,7 @@
 					<div class="icon-box light left">
 						<div class="service-text">
 							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+							<p>Brand awareness ...</p>
 						</div>
 						<div class="icon">
 							<i class="flaticon-020-creativity"></i>
@@ -143,14 +154,14 @@
 							<i class="flaticon-008-team"></i>
 						</div>
 						<div class="service-text">
-							<h2>SMART MARKETING</h2>
+							<h2>WHERE DOES YOUR TRASH GO?</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="text-center mt100">
-				<a href="" class="site-btn">Sign up as a Company</a><span style="color: transparent;">This is just a space</span><a href="" class="site-btn">Sign up as a consumer</a>
+				<a href="{% url 'company_signup' %}" class="site-btn">Sign up as a Company</a><span style="color: transparent;">This is just a space</span><a href="{% url 'consumer_signup' %}" class="site-btn">Sign up as a consumer</a>
 
 			</div>
 		</div>
