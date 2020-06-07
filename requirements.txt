@@ -204,7 +204,7 @@ visitor==0.1.3
 wadllib==1.3.2
 watchdog==0.8.3
 websocket-client==0.56.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 whitenoise==4.1.2
 wrapt==1.10.11
 WTForms==2.2.1
