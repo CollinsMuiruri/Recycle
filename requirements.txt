@@ -22,7 +22,7 @@ codecov==2.0.15
 command-not-found==0.3
 confusable-homoglyphs==3.2.0
 coverage==4.5.1
-cryptography==2.7
+cryptography==3.2
 cupshelpers==1.0
 cycler==0.10.0
 Cython==0.23
