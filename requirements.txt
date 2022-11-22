@@ -117,7 +117,7 @@ pathtools==0.1.2
 pbr==4.1.0
 pexpect==4.2.1
 pilkit==2.0
-Pillow==6.2.0
+Pillow==9.3.0
 plib3.gui==0.9.9
 plib3.stdlib==0.9.27
 protobuf==3.0.0
